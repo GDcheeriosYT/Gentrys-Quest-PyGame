@@ -37,11 +37,11 @@ class GuestConfirmBox(Entity):
         Game.user.load()
         if Game.user.user_data.startup_amount == 0:
             starter_character = StarterCharacter(Game.user.username)
+            starter_character.swap_weapon(Game.content_manager.get_weapon("No Weapon"))
             Game.user.user_data.increment_startup_amount()
             Game.user.equip_character(starter_character)
             Game.user.add_character(starter_character)
             Game.change_state(GameStates.tutorial)
-            Game.user.add_weapon(Game.content_manager.get_weapon('Knife'))
         else:
             Game.user.user_data.increment_startup_amount()
             Game.change_state(GameStates.selection)

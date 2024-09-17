@@ -25,7 +25,7 @@ class Register(Entity):
             if "Ramen" in Game.user.user_data.items:
                 Game.user.user_data.items.remove("Ramen")
                 self.text_container.set_text("Thanks for coming by have a good night!", 3)
-                Audio("Audio/buy.mp3", volume=GameConfiguration.volume)
+                Game.audio_system.play_sound(Audio("Audio/buy.mp3"))
                 self.buy_finish()
 
             else:

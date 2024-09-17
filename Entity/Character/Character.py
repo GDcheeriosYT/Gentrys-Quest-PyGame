@@ -235,7 +235,7 @@ class Character(GameUnit):
         destroy(copy, delay)
 
     def death_transition(self):
-        if Game.state != GameStates.testing:
+        if Game.state != GameStates.testing and Game.state != GameStates.tutorial:
             self.create_texture_copy(4)
             fade_screen = FadeScreen()
             invoke(lambda: camera.animate_position((camera.x, camera.y + 10), 3, curve=curve.linear), delay=0.2)

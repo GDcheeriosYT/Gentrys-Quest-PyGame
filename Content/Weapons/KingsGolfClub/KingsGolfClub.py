@@ -30,5 +30,9 @@ class KingsGolfClub(SwingWeapon):
         return 2.3
 
     @property
+    def weapon_type(self) -> str:
+        return "Golf Club"
+
+    @property
     def texture(self) -> str:
         return "Textures/golfy.png"

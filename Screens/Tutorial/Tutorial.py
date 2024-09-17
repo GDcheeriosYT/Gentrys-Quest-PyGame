@@ -1,13 +1,13 @@
 from ursina import *
-from ..Screen import Screen
-from Graphics.UIs.HUD.HUD import HUD
-import Game
-from .Map.TutorialMap import TutorialMap
-from Content.Weapons.BraydensOsuPen.BraydensOsuPen import BraydensOsuPen
-from Content.Enemies.AngryPedestrian.AngryPedestrian import AngryPedestrian
-from Graphics.Containers.TextContainer import TextContainer
-from .Map.Ramen import Ramen
 from ursina.curve import *
+
+import Game
+
+from Graphics.Containers.TextContainer import TextContainer
+
+from ..Screen import Screen
+from .Map.TutorialMap import TutorialMap
+from .Map.Ramen import Ramen
 
 
 class Tutorial(Screen):
@@ -25,19 +25,11 @@ class Tutorial(Screen):
         camera.position = (0, -10, -20)
         camera.animate_position((0, 0, -20), 4, curve=linear)
         invoke(self.player.spawn, delay=5)
-        invoke(self.player.toggle_movement, delay=10)
-        self.hud = HUD(self.player)
-        self.hud.hide_elements()
-        text_container.schedule_text(f"{self.player.name} is at a\nconvenience store buying ramen noodles.", 5, 5)
-        text_container.schedule_text(f"He picks up some ramen.", 10, 5)
+        invoke(lambda: self.player.remove_effect("Stun"), delay=10)
+        text_container.schedule_text(f"{self.player.name} is at a\nconvenience store buying ramen noodles.", 6, 4)
+        text_container.schedule_text(f"He picks up some ramen.", 11, 5)
         invoke(lambda: Ramen(position=(6, 0)), delay=10)
         invoke(self.show_controls, delay=9)
-        # npc = AngryPedestrian()
-        # npc.stats.attack.points = 57
-        # npc.stats.health.points = 900
-        # npc.experience.level = 20
-        # npc.follow_entity(self.player)
-        # invoke(npc.spawn, delay=12)
 
     def show_controls(self):
         movement = Text(
@@ -61,7 +53,3 @@ class Tutorial(Screen):
     @property
     def color(self) -> color:
         return rgb(17, 80, 17)
-
-    def input(self, key):
-        if key == "left mouse":
-            self.phase += 1

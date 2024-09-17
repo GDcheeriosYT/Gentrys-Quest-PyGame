@@ -26,6 +26,7 @@ from Content.Locations.TestLocation.TestLocation import TestLocation
 from Content.Weapons.Knife.Knife import Knife
 from Content.Weapons.BraydensOsuPen.BraydensOsuPen import BraydensOsuPen
 from Content.Weapons.KingsGolfClub.KingsGolfClub import KingsGolfClub
+from Content.Weapons.NoWeapon.NoWeapon import NoWeapon
 
 # Gachas
 from Content.Gachas.TestGacha import TestGacha
@@ -70,7 +71,8 @@ class ContentManager:
         self.weapons = [
             Knife,
             BraydensOsuPen,
-            KingsGolfClub
+            KingsGolfClub,
+            NoWeapon
         ]
 
         self.gachas = [
